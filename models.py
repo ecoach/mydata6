@@ -173,22 +173,6 @@ _CUM_GPA_SURVEY_CHOICES = (
     ('4_0', '4.0'),
 )
 
-_BIRTHMO_COPY1_CHOICES = (
-    ('-1', 'Month'),
-    ('1', 'January'),
-    ('2', 'February'),
-    ('3', 'March'),
-    ('4', 'April'),
-    ('5', 'May'),
-    ('6', 'June'),
-    ('7', 'July'),
-    ('8', 'August'),
-    ('9', 'September'),
-    ('10', 'October'),
-    ('11', 'November'),
-    ('12', 'December'),
-)
-
 _EMPLOYMENT_CHOICES = (
     ('No_Job', 'I do not have a job'),
     ('Part_Time', 'I work a part-time job (20 hours or less a week)'),
@@ -218,6 +202,14 @@ _CONFIDENCE_CHOICES = (
     ('8', '8'),
     ('9', '9'),
     ('10', '10<br>Extremely confident'),
+)
+
+_REASON_CHOICES = (
+    ('Possible_Concentrate_req', 'I am considering this subject as my concentration'),
+    ('Concentration_req', 'This is a course required by my concentration'),
+    ('Grad_req', 'I need this class to prepare for my graduate/professional program'),
+    ('Credit', 'For a specific credit (NS, QR, etc.)'),
+    ('Interest', "I'm taking this class because of my interest in the subject"),
 )
 
 _FS_MOSTVALUABLE_CHOICES = (
@@ -280,13 +272,6 @@ _BIRTHMO_CHOICES = (
     ('12', 'December'),
 )
 
-_CLASS_STANDING_COPY1_CHOICES = (
-    ('Freshman', 'Freshman'),
-    ('Sophomore', 'Sophomore'),
-    ('Junior', 'Junior'),
-    ('Senior', 'Senior'),
-)
-
 _COLLEGE_CHOICES = (
     ('LSA', 'LSA'),
     ('Engineering', 'Engineering'),
@@ -295,18 +280,16 @@ _COLLEGE_CHOICES = (
 )
 
 
+class EmptySource(SubjectData):
+    pass
+
 class Source1(SubjectData):
     # add meta property
     class Meta: 
         db_table = 'mydata_source1'
-    BirthMo = models.IntegerField(null=True, blank=True)
-    BirthDay = models.IntegerField(null=True, blank=True)
-    BirthYr = models.IntegerField(null=True, blank=True)
-    Class_Standing = models.CharField(max_length=9, choices=_CLASS_STANDING_CHOICES, null=True, blank=True)
     SLC_Enrolled = models.CharField(max_length=3, choices=_SLC_ENROLLED_CHOICES, null=True, blank=True)
     AP_Bio = models.CharField(max_length=3, choices=_AP_BIO_CHOICES, null=True, blank=True)
     AP_Chem = models.CharField(max_length=3, choices=_AP_CHE_CHOICES, null=True, blank=True)
-    Concentrate_Other = models.TextField(null=True, blank=True)
     Confidence = models.CharField(max_length=2, choices=_CONFIDENCE_CHOICES, null=True, blank=True)
     Goal_Grade = models.CharField(max_length=1, choices=GRADE_DIST_CHOICES, null=True, blank=True)
     Subject_Interest = models.CharField(max_length=2, choices=_SUBJECT_INTEREST_CHOICES, null=True, blank=True)
@@ -365,8 +348,13 @@ class Source1(SubjectData):
     Pred_Dist_PostExam1 = models.CharField(max_length=100, null=True, blank=True)
     Pred_Dist_PostExam2 = models.CharField(max_length=100, null=True, blank=True)
     Pred_Dist_PostExam3 = models.CharField(max_length=100, null=True, blank=True)
+    Reason__Possible_Concentrate_req = models.NullBooleanField()
+    Reason__Concentration_req = models.NullBooleanField()
+    Reason__Grad_req = models.NullBooleanField()
+    Reason__Credit = models.NullBooleanField()
+    Reason__Interest = models.NullBooleanField()
 
-class EmptySource(SubjectData):
+class commonsurvey(SubjectData):
     pass
 
 class Common1(SubjectData):
@@ -377,9 +365,9 @@ class Common1(SubjectData):
     Last_Name = models.CharField(max_length=20, null=True, blank=True)
     uniqname = models.CharField(max_length=20, null=True, blank=True)
     Gender = models.CharField(max_length=1, choices=_GENDER_CHOICES, null=True, blank=True)
-    BirthDay_Copy1 = models.IntegerField(null=True, blank=True)
-    BirthMo_Copy1 = models.IntegerField(null=True, blank=True)
-    BirthYr_Copy1 = models.IntegerField(null=True, blank=True)
+    BirthDay = models.IntegerField(null=True, blank=True)
+    BirthMo = models.IntegerField(null=True, blank=True)
+    BirthYr = models.IntegerField(null=True, blank=True)
     Semesters_Completed = models.IntegerField(null=True, blank=True)
     College = models.CharField(max_length=11, choices=_COLLEGE_CHOICES, null=True, blank=True)
     College_Other = models.CharField(max_length=30, null=True, blank=True)
@@ -398,9 +386,9 @@ class Common1(SubjectData):
     Concentrate__Education = models.NullBooleanField()
     Concentrate__IDK = models.NullBooleanField()
     Concentrate__Other = models.NullBooleanField()
-    Concentrate_Other_Copy1 = models.TextField(null=True, blank=True)
+    Concentrate_Other = models.TextField(null=True, blank=True)
     Declared = models.CharField(max_length=3, choices=_DECLARED_CHOICES, null=True, blank=True)
-    Class_Standing_Copy1 = models.CharField(max_length=9, choices=_CLASS_STANDING_COPY1_CHOICES, null=True, blank=True)
+    Class_Standing = models.CharField(max_length=9, choices=_CLASS_STANDING_CHOICES, null=True, blank=True)
     Cum_GPA_Survey = models.CharField(max_length=3, choices=_CUM_GPA_SURVEY_CHOICES, null=True, blank=True)
     Employment = models.CharField(max_length=9, choices=_EMPLOYMENT_CHOICES, null=True, blank=True)
     Involved_In__Greek = models.NullBooleanField()
