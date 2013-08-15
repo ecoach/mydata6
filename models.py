@@ -44,11 +44,11 @@ _GENDER_CHOICES = (
 )
 
 _FS_USAGE_CHOICES = (
-    ('NewValue1', 'Daily'),
-    ('NewValue2', 'Every couple of days'),
-    ('NewValue3', 'Once a week'),
-    ('NewValue4', 'Once every few weeks'),
-    ('NewValue5', 'Mostly after exams'),
+    ('daily', 'Daily'),
+    ('coupledays', 'Every couple of days'),
+    ('onceweek', 'Once a week'),
+    ('everyfewweeks', 'Once every few weeks'),
+    ('postexams', 'Mostly after exams'),
 )
 
 _CONCENTRATE_CHOICES = (
@@ -87,30 +87,6 @@ _POST_COLLEGE_CHOICES = (
     ('Other', 'Other'),
 )
 
-_HIGH_SCHOOL_CUMGPA_COPY1_CHOICES = (
-    ('2_0', 'Less than 2.0'),
-    ('2_1', '2.1'),
-    ('2_2', '2.2'),
-    ('2_3', '2.3'),
-    ('2_4', '2.4'),
-    ('2_5', '2.5'),
-    ('2_6', '2.6'),
-    ('2_7', '2.7'),
-    ('2_8', '2.8'),
-    ('2_9', '2.9'),
-    ('3_0', '3.0'),
-    ('3_1', '3.1'),
-    ('3_2', '3.2'),
-    ('3_3', '3.3'),
-    ('3_4', '3.4'),
-    ('3_5', '3.5'),
-    ('3_6', '3.6'),
-    ('3_7', '3.7'),
-    ('3_8', '3.8'),
-    ('3_9', '3.9'),
-    ('4_0', '4.0'),
-)
-
 _SUBJECT_INTEREST_CHOICES = (
     ('0', '0<br>Not at all interested'),
     ('1', '1'),
@@ -123,30 +99,6 @@ _SUBJECT_INTEREST_CHOICES = (
     ('8', '8'),
     ('9', '9'),
     ('10', '10<br>Extremely interested'),
-)
-
-_HIGH_SCHOOL_CUMGPA_CHOICES = (
-    ('2_0', 'Less than 2.0'),
-    ('2_1', '2.1'),
-    ('2_2', '2.2'),
-    ('2_3', '2.3'),
-    ('2_4', '2.4'),
-    ('2_5', '2.5'),
-    ('2_6', '2.6'),
-    ('2_7', '2.7'),
-    ('2_8', '2.8'),
-    ('2_9', '2.9'),
-    ('3_0', '3.0'),
-    ('3_1', '3.1'),
-    ('3_2', '3.2'),
-    ('3_3', '3.3'),
-    ('3_4', '3.4'),
-    ('3_5', '3.5'),
-    ('3_6', '3.6'),
-    ('3_7', '3.7'),
-    ('3_8', '3.8'),
-    ('3_9', '3.9'),
-    ('4_0', '4.0'),
 )
 
 _CUM_GPA_SURVEY_CHOICES = (
@@ -223,6 +175,28 @@ _FS_MOSTVALUABLE_CHOICES = (
     ('8', 'Class calendar'),
 )
 
+_GOAL_GRADE_CHOICES = (
+    ('8', 'A'),
+    ('7', 'A-'),
+    ('6', 'B+'),
+    ('5', 'B'),
+    ('4', 'B-'),
+    ('3', 'C+'),
+    ('2', 'C'),
+    ('1', 'C-'),
+)
+
+_PRED_MOSTPROB_INITIAL_CHOICES = (
+    ('8', 'A'),
+    ('7', 'A-'),
+    ('6', 'B+'),
+    ('5', 'B'),
+    ('4', 'B-'),
+    ('3', 'C+'),
+    ('2', 'C'),
+    ('1', 'C-'),
+)
+
 GRADE_DIST_CHOICES = (
     ('8', 'A'),
     ('7', 'A-'),
@@ -242,6 +216,30 @@ _INVOLVED_IN_CHOICES = (
     ('Volunteering', 'Volunteering'),
     ('Music_Art', 'Music/Art'),
     ('Other', 'Other Student Clubs/Organzations'),
+)
+
+_HIGH_SCHOOL_CUMGPA__CHOICES = (
+    ('2_0', 'Less than 2.0'),
+    ('2_1', '2.1'),
+    ('2_2', '2.2'),
+    ('2_3', '2.3'),
+    ('2_4', '2.4'),
+    ('2_5', '2.5'),
+    ('2_6', '2.6'),
+    ('2_7', '2.7'),
+    ('2_8', '2.8'),
+    ('2_9', '2.9'),
+    ('3_0', '3.0'),
+    ('3_1', '3.1'),
+    ('3_2', '3.2'),
+    ('3_3', '3.3'),
+    ('3_4', '3.4'),
+    ('3_5', '3.5'),
+    ('3_6', '3.6'),
+    ('3_7', '3.7'),
+    ('3_8', '3.8'),
+    ('3_9', '3.9'),
+    ('4_0', '4.0'),
 )
 
 _SLC_ENROLLED_CHOICES = (
@@ -291,9 +289,8 @@ class Source1(SubjectData):
     AP_Bio = models.CharField(max_length=3, choices=_AP_BIO_CHOICES, null=True, blank=True)
     AP_Chem = models.CharField(max_length=3, choices=_AP_CHE_CHOICES, null=True, blank=True)
     Confidence = models.CharField(max_length=2, choices=_CONFIDENCE_CHOICES, null=True, blank=True)
-    Goal_Grade = models.CharField(max_length=1, choices=GRADE_DIST_CHOICES, null=True, blank=True)
+    Goal_Grade = models.CharField(max_length=1, choices=_GOAL_GRADE_CHOICES, null=True, blank=True)
     Subject_Interest = models.CharField(max_length=2, choices=_SUBJECT_INTEREST_CHOICES, null=True, blank=True)
-    High_School_CumGPA = models.CharField(max_length=3, choices=_HIGH_SCHOOL_CUMGPA_CHOICES, null=True, blank=True)
     Attendance_Anticipated = models.CharField(max_length=10, choices=_ATTENDANCE_ANTICIPATED_CHOICES, null=True, blank=True)
     FS_MostValuable__1 = models.NullBooleanField()
     FS_MostValuable__2 = models.NullBooleanField()
@@ -312,7 +309,7 @@ class Source1(SubjectData):
     FS_LeastValuable__NewValue7 = models.NullBooleanField()
     FS_LeastValuable__NewValue8 = models.NullBooleanField()
     FS_Changes = models.TextField(null=True, blank=True)
-    FS_Usage = models.CharField(max_length=9, choices=_FS_USAGE_CHOICES, null=True, blank=True)
+    FS_Usage = models.CharField(max_length=13, choices=_FS_USAGE_CHOICES, null=True, blank=True)
     FS_Challenges = models.TextField(null=True, blank=True)
     Exam1_FR = models.FloatField(null=True, blank=True)
     Exam1_MC = models.FloatField(null=True, blank=True)
@@ -401,6 +398,6 @@ class Common1(SubjectData):
     Other_Commitment = models.TextField(null=True, blank=True)
     Post_College = models.CharField(max_length=13, choices=_POST_COLLEGE_CHOICES, null=True, blank=True)
     Parent_Ed = models.CharField(max_length=14, choices=_PARENT_ED_CHOICES, null=True, blank=True)
-    High_School_CumGPA_Copy1 = models.CharField(max_length=3, choices=_HIGH_SCHOOL_CUMGPA_COPY1_CHOICES, null=True, blank=True)
+    High_School_CumGPA = models.CharField(max_length=3, choices=_HIGH_SCHOOL_CUMGPA__CHOICES, null=True, blank=True)
 
 
