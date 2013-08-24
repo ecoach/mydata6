@@ -402,9 +402,6 @@ TEXT_CLASSSTANDING_CHOICES = (
 )
 
 
-class EmptySource(SubjectData):
-    pass
-
 class Source1(SubjectData):
     # add meta property
     class Meta: 
@@ -470,6 +467,13 @@ class Source1(SubjectData):
     Pred_MostProb_PostExam1 = models.IntegerField(null=True, blank=True)
     Pred_MostProb_PostExam2 = models.IntegerField(null=True, blank=True)
     Pred_MostProb_PostExam3 = models.IntegerField(null=True, blank=True)
+    Pred_Dist_Intial = models.CharField(max_length=20, null=True, blank=True)
+    Pred_Dist_PostExam1 = models.CharField(max_length=20, null=True, blank=True)
+    Pred_Dist_PostExam2 = models.CharField(max_length=20, null=True, blank=True)
+    Pred_Dist_PostExam3 = models.CharField(max_length=20, null=True, blank=True)
+
+class EmptySource(SubjectData):
+    pass
 
 class Common1(SubjectData):
     # add meta property
