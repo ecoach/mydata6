@@ -7,6 +7,7 @@ from djangotailoring.models import SubjectData
 # Create your models here.
 
 # python ../manage.py makemtsmodel > MODEL.OUT (results go below here)
+# model matches dict rev 1700
 
 TEXT_PARENTED_CHOICES = (
     ('Less_HS', 'Less than High School'),
