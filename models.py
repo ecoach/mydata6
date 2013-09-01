@@ -411,7 +411,7 @@ class Source1(SubjectData):
     AP_Bio = models.CharField(max_length=3, choices=TEXT_APBIO_CHOICES, null=True, blank=True)
     AP_Chem = models.CharField(max_length=3, choices=TEXT_APCHEM_CHOICES, null=True, blank=True)
     Confidence = models.CharField(max_length=2, choices=INT_CONFIDENCE_CHOICES, null=True, blank=True)
-    Goal_Grade = models.CharField(max_length=1, choices=INT_GOAL_CHOICES, null=True, blank=True)
+    Goal_Grade = models.IntegerField(null=True, blank=True)
     Reason__Possible_Concentrate_req = models.NullBooleanField()
     Reason__Concentration_req = models.NullBooleanField()
     Reason__Grad_req = models.NullBooleanField()
